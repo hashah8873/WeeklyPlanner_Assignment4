@@ -7,4 +7,6 @@ This is a simple Java program that allows the user to enter weekly tasks and sav
 2. Compile the program:
    ```bash
    javac Task.java WeeklyPlanner.java
-   
+   ![Terminal Demo](screenshots/terminal-run.png)
+
+
