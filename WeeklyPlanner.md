@@ -1,5 +1,19 @@
-# 📝 Weekly Planner
+# Weekly Planner
 
+## Monday
+- Buy groceries
+
+## Tuesday
 - Study Java
-- Do Assignment
-- Go for a walk
+
+## Wednesday
+
+## Thursday
+
+## Friday
+- Gym workout
+
+## Saturday
+
+## Sunday
+

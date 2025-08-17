@@ -1,37 +1,35 @@
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 public class WeeklyPlanner {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+    private List<Task> tasks;
 
-        System.out.println("How many tasks do you want to plan?");
-        int taskCount = scanner.nextInt();
-        scanner.nextLine(); // consume newline
+    public WeeklyPlanner() {
+        tasks = new ArrayList<>();
+    }
 
-        // Create array of Task objects
-        Task[] tasks = new Task[taskCount];
+    public void addTask(Task task) {
+        tasks.add(task);
+    }
 
-        // Input tasks
-        for (int i = 0; i < taskCount; i++) {
-            System.out.print("Enter task " + (i + 1) + ": ");
-            String description = scanner.nextLine();
-            tasks[i] = new Task(description);
-        }
-
-        // Write tasks to Markdown file
-        try (FileWriter writer = new FileWriter("../WeeklyPlanner.md")) {
+    public void saveToMarkdown(String filename) {
+        try (FileWriter writer = new FileWriter(filename)) {
             writer.write("# Weekly Planner\n\n");
-            for (int i = 0; i < taskCount; i++) {
-                writer.write("- " + tasks[i].getDescription() + "\n");
+            String[] days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+            for (String day : days) {
+                writer.write("## " + day + "\n");
+                for (Task task : tasks) {
+                    if (task.getDay().equalsIgnoreCase(day)) {
+                        writer.write(task.toString() + "\n");
+                    }
+                }
+                writer.write("\n");
             }
-            System.out.println("Tasks saved to WeeklyPlanner.md successfully!");
+            System.out.println("Tasks saved to " + filename);
         } catch (IOException e) {
-            System.out.println("An error occurred while writing the file.");
-            e.printStackTrace();
+            System.out.println("Error writing to file: " + e.getMessage());
         }
-
-        scanner.close();
     }
 }

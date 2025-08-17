@@ -1,18 +1,22 @@
 public class Task {
+    private String day;
     private String description;
 
-    // Constructor
-    public Task(String description) {
+    public Task(String day, String description) {
+        this.day = day;
         this.description = description;
     }
 
-    // Getter
+    public String getDay() {
+        return day;
+    }
+
     public String getDescription() {
         return description;
     }
 
-    // Setter
-    public void setDescription(String description) {
-        this.description = description;
+    @Override
+    public String toString() {
+        return "- " + description;
     }
 }
